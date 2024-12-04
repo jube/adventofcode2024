@@ -33,14 +33,14 @@ target("03b")
     set_kind("binary")
     add_files("03b.cc")
 
--- target("04a")
---     set_kind("binary")
---     add_files("04a.cc")
---
--- target("04b")
---     set_kind("binary")
---     add_files("04b.cc")
---
+target("04a")
+    set_kind("binary")
+    add_files("04a.cc")
+
+target("04b")
+    set_kind("binary")
+    add_files("04b.cc")
+
 -- target("05a")
 --     set_kind("binary")
 --     add_files("05a.cc")
