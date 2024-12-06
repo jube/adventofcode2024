@@ -1,17 +1,6 @@
 #include <cassert>
-#include <cstdint>
-#include <algorithm>
-#include <charconv>
 #include <iostream>
-#include <iterator>
-#include <limits>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <sstream>
 #include <string>
-#include <tuple>
 #include <vector>
 
 int main() {
