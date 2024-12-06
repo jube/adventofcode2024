@@ -1,6 +1,8 @@
 #include <cassert>
 #include <iostream>
+#include <set>
 #include <string>
+#include <tuple>
 #include <vector>
 
 int main() {
@@ -29,7 +31,6 @@ int main() {
   }
 
   int count = 0;
-  constexpr int Max = 10000000; // SHAME! SHAME! SHAME!
 
   for (std::size_t blocki = 0; blocki < area.size(); ++blocki) {
     for (std::size_t blockj = 0; blockj < area[blocki].size(); ++blockj) {
@@ -43,8 +44,7 @@ int main() {
         continue;
       }
 
-      auto copy = area;
-      copy[blocki][blockj] = '#';
+      area[blocki][blockj] = '#';
 
       int diri = -1;
       int dirj = 0;
@@ -52,25 +52,19 @@ int main() {
       int posi = initi;
       int posj = initj;
 
+      std::set<std::tuple<int, int, int, int>> seen;
+      seen.emplace(posi, posj, diri, dirj);
       bool loop = false;
-      int step = 0;
 
       for (;;) {
-        ++step;
-
-        if (step > Max) {
-          loop = true;
-          break;
-        }
-
         int nexti = posi + diri;
         int nextj = posj + dirj;
 
-        if (nexti < 0 || nextj < 0 || nexti >= int(copy.size()) || nextj >= int(copy.front().size())) {
+        if (nexti < 0 || nextj < 0 || nexti >= int(area.size()) || nextj >= int(area.front().size())) {
           break;
         }
 
-        if (copy[nexti][nextj] == '#') {
+        if (area[nexti][nextj] == '#') {
           int nextdirj = -diri;
           int nextdiri = dirj;
           dirj = nextdirj;
@@ -79,25 +73,24 @@ int main() {
           posi = nexti;
           posj = nextj;
         }
+
+        if (seen.find({ posi, posj, diri, dirj }) != seen.end()) {
+          loop = true;
+          break;
+        } else {
+          seen.emplace(posi, posj, diri, dirj);
+        }
+
       }
 
       if (loop) {
         ++count;
       }
+
+      // undo
+      area[blocki][blockj] = '.';
     }
   }
-
-  // for (auto& line : area) {
-  //   for (char c : line) {
-  //     std::cout << c;
-  //
-  //     if (c == 'X') {
-  //       ++count;
-  //     }
-  //   }
-  //
-  //   std::cout << '\n';
-  // }
 
   std::cout << count << '\n';
 }
