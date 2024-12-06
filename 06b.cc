@@ -1,8 +1,7 @@
 #include <cassert>
+#include <array>
 #include <iostream>
-#include <set>
 #include <string>
-#include <tuple>
 #include <vector>
 
 int main() {
@@ -49,11 +48,22 @@ int main() {
       int diri = -1;
       int dirj = 0;
 
+      auto dir_index = [](int diri, int dirj) {
+        if (diri == -1) { return 0; }
+        if (diri == 1) { return 1; }
+        if (dirj == -1) { return 2; }
+        assert(dirj == 1);
+        return 3;
+      };
+
       int posi = initi;
       int posj = initj;
 
-      std::set<std::tuple<int, int, int, int>> seen;
-      seen.emplace(posi, posj, diri, dirj);
+      assert(0 <= dir_index(diri, dirj) && dir_index(diri, dirj) < 4);
+
+      std::vector<std::vector<std::array<bool, 4>>> seen(area.size(), std::vector<std::array<bool, 4>>(area.front().size(), { false, false, false, false }));
+      seen[posi][posj][dir_index(diri, dirj)] = true;
+
       bool loop = false;
 
       for (;;) {
@@ -74,13 +84,14 @@ int main() {
           posj = nextj;
         }
 
-        if (seen.find({ posi, posj, diri, dirj }) != seen.end()) {
+        assert(0 <= dir_index(diri, dirj) && dir_index(diri, dirj) < 4);
+
+        if (seen[posi][posj][dir_index(diri, dirj)]) {
           loop = true;
           break;
         } else {
-          seen.emplace(posi, posj, diri, dirj);
+          seen[posi][posj][dir_index(diri, dirj)] = true;
         }
-
       }
 
       if (loop) {
