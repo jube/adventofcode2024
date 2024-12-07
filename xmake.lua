@@ -57,14 +57,14 @@ target("06b")
     set_kind("binary")
     add_files("06b.cc")
 
--- target("07a")
---     set_kind("binary")
---     add_files("07a.cc")
---
--- target("07b")
---     set_kind("binary")
---     add_files("07b.cc")
---
+target("07a")
+    set_kind("binary")
+    add_files("07a.cc")
+
+target("07b")
+    set_kind("binary")
+    add_files("07b.cc")
+
 -- target("08a")
 --     set_kind("binary")
 --     add_files("08a.cc")
