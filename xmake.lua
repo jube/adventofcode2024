@@ -89,18 +89,14 @@ target("10b")
     set_kind("binary")
     add_files("10b.cc")
 
--- target("10display")
---     set_kind("binary")
---     add_files("10display.cc")
---
--- target("11a")
---     set_kind("binary")
---     add_files("11a.cc")
---
--- target("11b")
---     set_kind("binary")
---     add_files("11b.cc")
---
+target("11a")
+    set_kind("binary")
+    add_files("11a.cc")
+
+target("11b")
+    set_kind("binary")
+    add_files("11b.cc")
+
 -- target("12a")
 --     set_kind("binary")
 --     add_files("12a.cc")
