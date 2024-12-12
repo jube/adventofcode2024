@@ -97,14 +97,14 @@ target("11b")
     set_kind("binary")
     add_files("11b.cc")
 
--- target("12a")
---     set_kind("binary")
---     add_files("12a.cc")
---
--- target("12b")
---     set_kind("binary")
---     add_files("12b.cc")
---
+target("12a")
+    set_kind("binary")
+    add_files("12a.cc")
+
+target("12b")
+    set_kind("binary")
+    add_files("12b.cc")
+
 -- target("13a")
 --     set_kind("binary")
 --     add_files("13a.cc")
