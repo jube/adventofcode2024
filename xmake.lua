@@ -1,7 +1,11 @@
 set_project("adventofcode")
 set_version("2024")
 
-add_requires("boost")
+-- add_repositories("sched-repo https://github.com/SchedulingLab/xmake-repo")
+--
+-- add_requires("lqp")
+
+add_rules("plugin.compile_commands.autoupdate", {outputdir = "$(buildir)"})
 
 set_policy("build.warning", true)
 set_symbols("debug")
@@ -105,14 +109,14 @@ target("12b")
     set_kind("binary")
     add_files("12b.cc")
 
--- target("13a")
---     set_kind("binary")
---     add_files("13a.cc")
---
--- target("13b")
---     set_kind("binary")
---     add_files("13b.cc")
---
+target("13a")
+    set_kind("binary")
+    add_files("13a.cc")
+
+target("13b")
+    set_kind("binary")
+    add_files("13b.cc")
+
 -- target("14a")
 --     set_kind("binary")
 --     add_files("14a.cc")
